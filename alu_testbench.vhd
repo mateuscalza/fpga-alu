@@ -1,4 +1,3 @@
-LIBRARY ieee;
 USE work.const.ALL;
 
 ENTITY alu_testbench IS
