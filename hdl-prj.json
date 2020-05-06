@@ -1,0 +1,6 @@
+{
+  "options": {
+    "ghdl_analysis": ["--workdir=.", "--ieee=synopsys", "-fexplicit"]
+  },
+  "files": [{ "file": "alu.vhd", "language": "vhdl" }]
+}
