@@ -1,60 +1,44 @@
-package const is
-	constant n: integer := 8; -- bits
-	constant m: integer := 2**n; -- total de combinacoes
-	constant p: integer := n+1; -- bits com sinalizacao
-	constant q: integer := 2**p; -- total de combinacoes com sinalizacao
-end const;
+PACKAGE const IS
+	CONSTANT n : INTEGER := 8; -- bits
+	CONSTANT m : INTEGER := 2 ** n; -- total de combinacoes
+	CONSTANT p : INTEGER := n + 1; -- bits com sinalizacao
+	CONSTANT q : INTEGER := 2 ** p; -- total de combinacoes com sinalizacao
+END const;
 
-library ieee;
-use work.const.all;
-use ieee.std_logic_1164.all;
-use ieee.std_logic_arith.all;
-use ieee.std_logic_unsigned.all;
-use std.textio.all;
+LIBRARY ieee;
+USE work.const.ALL;
+USE ieee.std_logic_1164.ALL;
+USE ieee.std_logic_arith.ALL;
+USE ieee.std_logic_unsigned.ALL;
+USE std.textio.ALL;
 
-entity ALU is
-	port (
-		a: in integer range 0 to m-1;
-		b: in integer range 0 to m-1;
-		mode: in integer range 0 to 3;
-		result: out integer range 0 to m-1;
-		carryBorrow: out bit
+ENTITY alu IS
+	PORT (
+		a : IN INTEGER RANGE 0 TO m - 1;
+		b : IN INTEGER RANGE 0 TO m - 1;
+		mode : IN INTEGER RANGE 0 TO 3;
+		result : OUT INTEGER RANGE 0 TO m - 1;
+		carryBorrow : OUT BIT
 	);
-end ALU;
+END alu;
 
-architecture VHDL of ALU is
-	begin process (a, b, mode)
+ARCHITECTURE vhdl OF alu IS
+BEGIN PROCESS (a, b, mode)
 
-	variable rr: integer range 0 to q-1;
-	variable l : line;
-	
-	begin
+	VARIABLE rr : INTEGER RANGE 0 TO q - 1;
+	VARIABLE l : line;
 
-		write(l, String'("a: "));
-		writeline(output, l);
-		write(l, a);
-		writeline(output, l);
+BEGIN
+	IF mode = 0 THEN
+		rr := a + b;
+	END IF;
 
-		write(l, String'("b: "));
-		writeline(output, l);
-		write(l, b);
-		writeline(output, l);
-		
-		write(l, String'("mode: "));
-		writeline(output, l);
-		write(l, mode);
-		writeline(output, l);
-		
-		if mode = 0 then
-			rr := a + b;
-		end if;
-		
-		if rr < m then
-			result <= rr;
-			carryBorrow <= '0';
-		else
-			result <= rr - m;
-			carryBorrow <= '1';
-		end if;
-	end process;
-end VHDL;
+	IF rr < m THEN
+		result <= rr;
+		carryBorrow <= '0';
+	ELSE
+		result <= rr - m;
+		carryBorrow <= '1';
+	END IF;
+END PROCESS;
+END vhdl;

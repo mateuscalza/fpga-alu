@@ -1,4 +1,4 @@
-# FPGA ALU
+# FPGA alu
 
 ## Prepare 
 
