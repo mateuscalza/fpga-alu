@@ -44,8 +44,26 @@ BEGIN
       b <= patterns(i).b;
       mode <= patterns(i).mode;
       WAIT FOR 1 ns;
-      ASSERT result = patterns(i).result REPORT "Resultado errado" SEVERITY error;
-      ASSERT carryBorrow = patterns(i).carryBorrow REPORT "Carry errado" SEVERITY error;
+
+      ASSERT result = patterns(i).result AND carryBorrow = patterns(i).carryBorrow
+      REPORT "Ocorreu um problema! Onde A = "
+        & INTEGER'image(a)
+        & ", B = "
+        & INTEGER'image(b)
+        & ", MODE = "
+        & INTEGER'image(mode) SEVERITY error;
+
+      ASSERT result = patterns(i).result
+      REPORT "Resultado errado = "
+        & INTEGER'image(result)
+        & ", resultado esperado = "
+        & INTEGER'image(patterns(i).result) SEVERITY error;
+
+      ASSERT carryBorrow = patterns(i).carryBorrow
+      REPORT "Carry/borrow errado = "
+        & BIT'image(carryBorrow)
+        & ", carry/borrow esperado = "
+        & BIT'image(patterns(i).carryBorrow) SEVERITY error;
     END LOOP;
     ASSERT false REPORT "Fim do teste" SEVERITY note;
 
