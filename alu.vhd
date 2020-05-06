@@ -10,13 +10,19 @@ USE work.const.ALL;
 USE ieee.std_logic_1164.ALL;
 USE ieee.std_logic_arith.ALL;
 USE ieee.std_logic_unsigned.ALL;
-USE std.textio.ALL;
 
 ENTITY alu IS
 	PORT (
 		a : IN INTEGER RANGE 0 TO m - 1;
 		b : IN INTEGER RANGE 0 TO m - 1;
+
+		-- MODE:
+		-- 0: ADD
+		-- 1: SUB
+		-- 2: AND
+		-- 3: XOR
 		mode : IN INTEGER RANGE 0 TO 3;
+
 		result : OUT INTEGER RANGE 0 TO m - 1;
 		carryBorrow : OUT BIT
 	);
@@ -26,7 +32,6 @@ ARCHITECTURE vhdl OF alu IS
 BEGIN PROCESS (a, b, mode)
 
 	VARIABLE rr : INTEGER RANGE 0 TO q - 1;
-	VARIABLE l : line;
 
 BEGIN
 	IF mode = 0 THEN
