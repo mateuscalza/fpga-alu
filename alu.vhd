@@ -11,18 +11,12 @@ USE ieee.std_logic_1164.ALL;
 USE ieee.std_logic_unsigned.ALL;
 USE ieee.numeric_std.ALL;
 
--- MODE:
--- 0: ADD
--- 1: SUB
--- 2: AND
--- 3: XOR
-
 ENTITY alu IS
 	PORT (
 		a : IN std_logic_vector(n - 1 DOWNTO 0);
 		b : IN std_logic_vector(n - 1 DOWNTO 0);
 
-		mode : IN INTEGER RANGE 0 TO 3;
+		mode : IN INTEGER RANGE 0 TO 3; -- 0 (add), 1 (sub), 2 (and), 3 (xor)
 
 		result : OUT std_logic_vector(n - 1 DOWNTO 0);
 		carryBorrow : OUT BIT
@@ -39,8 +33,8 @@ BEGIN
 
 	BEGIN
 		IF mode = 0 THEN
-			intA := to_integer(signed(a));
-			intB := to_integer(signed(b));
+			intA := to_integer(unsigned(a));
+			intB := to_integer(unsigned(b));
 			intResult := intA + intB;
 			IF intResult < m THEN
 				carryBorrow <= '0';
