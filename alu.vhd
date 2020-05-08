@@ -30,36 +30,42 @@ ENTITY alu IS
 END alu;
 
 ARCHITECTURE vhdl OF alu IS
+	SIGNAL signedBits : std_logic_vector (p DOWNTO 0);
 BEGIN
 	PROCESS (a, b, mode)
-		VARIABLE rr : std_logic_vector(n - 1 DOWNTO 0);
+		VARIABLE intResult : INTEGER;
+		VARIABLE intA : INTEGER;
+		VARIABLE intB : INTEGER;
 
 	BEGIN
 		IF mode = 0 THEN
-			rr := a + b;
-
-			IF rr < m THEN
-				result <= rr;
+			intA := to_integer(signed(a));
+			intB := to_integer(signed(b));
+			intResult := intA + intB;
+			IF intResult < m THEN
 				carryBorrow <= '0';
+				result <= a + b;
 			ELSE
-				result <= rr - m;
 				carryBorrow <= '1';
+				result <= "00000000";
 			END IF;
 		ELSIF mode = 1 THEN
-			rr := a - b;
-
-			IF rr < m THEN
-				result <= rr;
+			intA := to_integer(unsigned(a));
+			intB := to_integer(unsigned(b));
+			intResult := intA - intB;
+			IF intResult >= 0 THEN
 				carryBorrow <= '0';
+				result <= a - b;
 			ELSE
-				result <= rr - m;
-				carryBorrow <= '1';
+				carryborrow <= '1';
+				result <= "00000000";
 			END IF;
 		ELSIF mode = 2 THEN
 			result <= a AND b;
 		ELSIF mode = 3 THEN
 			result <= a XOR b;
 		END IF;
-
+		-- signedBits <= ('0' & A) + ('0' & B);
+		carryBorrow <= '0';-- to_bit(signedBits(8));
 	END PROCESS;
 END vhdl;
