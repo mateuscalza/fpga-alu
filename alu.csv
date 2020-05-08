@@ -1,0 +1,49 @@
+# Copyright (C) 1991-2014 Altera Corporation. All rights reserved.
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, the Altera Quartus II License Agreement,
+# the Altera MegaCore Function License Agreement, or other 
+# applicable license agreement, including, without limitation, 
+# that your use is for the sole purpose of programming logic 
+# devices manufactured by Altera and sold by Altera or its 
+# authorized distributors.  Please refer to the applicable 
+# agreement for further details.
+
+# Quartus II 64-Bit Version 14.0.0 Build 200 06/17/2014 SJ Web Edition
+# File: C:\altera\Projects\alu.csv
+# Generated on: Fri May 08 19:34:59 2020
+
+# Note: The column header names should not be changed if you wish to import this .csv file into the Quartus II software.
+
+To,Direction,Location,I/O Bank,VREF Group,Fitter Location,I/O Standard,Reserved,Current Strength,Slew Rate,Differential Pair
+a[7],Input,PIN_Y23,5,B5_N2,PIN_N8,,,,,
+a[6],Input,PIN_Y24,5,B5_N2,PIN_L4,,,,,
+a[5],Input,PIN_AA22,5,B5_N2,PIN_R7,,,,,
+a[4],Input,PIN_AA23,5,B5_N2,PIN_K7,,,,,
+a[3],Input,PIN_AA24,5,B5_N2,PIN_L8,,,,,
+a[2],Input,PIN_AB23,5,B5_N2,PIN_R1,,,,,
+a[1],Input,PIN_AB24,5,B5_N2,PIN_L6,,,,,
+a[0],Input,PIN_AC24,5,B5_N2,PIN_P1,,,,,
+b[7],Input,PIN_AB26,5,B5_N1,PIN_L7,,,,,
+b[6],Input,PIN_AD26,5,B5_N2,PIN_P2,,,,,
+b[5],Input,PIN_AC26,5,B5_N2,PIN_M5,,,,,
+b[4],Input,PIN_AB27,5,B5_N1,PIN_J7,,,,,
+b[3],Input,PIN_AD27,5,B5_N2,PIN_M3,,,,,
+b[2],Input,PIN_AC27,5,B5_N2,PIN_J6,,,,,
+b[1],Input,PIN_AC28,5,B5_N2,PIN_L3,,,,,
+b[0],Input,PIN_AB28,5,B5_N1,PIN_R2,,,,,
+carryBorrow,Output,PIN_F19,7,B7_N0,PIN_L2,,,,,
+mode[1],Input,PIN_AB25,5,B5_N1,PIN_K8,,,,,
+mode[0],Input,PIN_AC25,5,B5_N2,PIN_U3,,,,,
+result[7],Output,PIN_G21,7,B7_N1,PIN_L1,,,,,
+result[6],Output,PIN_G22,7,B7_N2,PIN_J5,,,,,
+result[5],Output,PIN_G20,7,B7_N1,PIN_M1,,,,,
+result[4],Output,PIN_H21,7,B7_N2,PIN_M7,,,,,
+result[3],Output,PIN_E24,7,B7_N1,PIN_N3,,,,,
+result[2],Output,PIN_E25,7,B7_N1,PIN_M8,,,,,
+result[1],Output,PIN_E22,7,B7_N0,PIN_N4,,,,,
+result[0],Output,PIN_E21,7,B7_N0,PIN_M2,,,,,

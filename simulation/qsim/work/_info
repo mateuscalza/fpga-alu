@@ -1,0 +1,81 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\altera\Projects\simulation\qsim
+valu
+Z1 !s100 n=S1O]HCoM=c>b7?;gQGM1
+Z2 IkR?13j71SMCmDae[b]FYX2
+Z3 VGM1I?H=Mo>`VV_lG><QkG1
+Z4 dC:\altera\Projects\simulation\qsim
+Z5 w1588976201
+Z6 8alu.vo
+Z7 Falu.vo
+L0 32
+Z8 OV;L;10.1e;51
+r1
+31
+Z9 !s90 -work|work|alu.vo|
+Z10 o-work work -O0
+!i10b 1
+!s85 0
+Z11 !s108 1588976232.434000
+Z12 !s107 alu.vo|
+!s101 -O0
+valu_vlg_check_tst
+!i10b 1
+!s100 hU>Z6_`:`f]eSgzXHoch41
+IWzKZ^OPZzGoaJ`26adzV01
+Z13 Vi6_4^_TcGjW0;Z8azO1I?1
+R4
+Z14 w1588976189
+Z15 8xor.vwf.vt
+Z16 Fxor.vwf.vt
+L0 62
+R8
+r1
+!s85 0
+31
+Z17 !s108 1588976237.534000
+Z18 !s107 xor.vwf.vt|
+Z19 !s90 -work|work|xor.vwf.vt|
+!s101 -O0
+R10
+valu_vlg_sample_tst
+!i10b 1
+!s100 _jofikL^e]D^4jIagUME51
+I3?GhNIL8AC0RAcDhmaRjz2
+Z20 V5AC0CcC3WZYZQa_b0Cj^12
+R4
+R14
+R15
+R16
+L0 30
+R8
+r1
+!s85 0
+31
+R17
+R18
+R19
+!s101 -O0
+R10
+valu_vlg_vec_tst
+!i10b 1
+!s100 MmS^N`:FCSc?l5Y3k]MXO2
+IlFO_HLEWUmg^R6b=L_UQI0
+Z21 VKh<<g<fN<83>nOE>KA>;A3
+R4
+R14
+R15
+R16
+Z22 L0 309
+R8
+r1
+!s85 0
+31
+R17
+R18
+R19
+!s101 -O0
+R10
