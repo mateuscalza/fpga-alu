@@ -49,6 +49,7 @@ BEGIN
 				carryBorrow <= '1';
 				result <= "00000000";
 			END IF;
+			-- result <= a - b;
 		ELSIF mode = 1 THEN
 			intA := to_integer(unsigned(a));
 			intB := to_integer(unsigned(b));
@@ -62,10 +63,13 @@ BEGIN
 			END IF;
 		ELSIF mode = 2 THEN
 			result <= a AND b;
+			carryBorrow <= '0';
 		ELSIF mode = 3 THEN
 			result <= a XOR b;
+			carryBorrow <= '0';
+		ELSE
+			result <= "00000000";
+			carryBorrow <= '0';
 		END IF;
-		-- signedBits <= ('0' & A) + ('0' & B);
-		carryBorrow <= '0';-- to_bit(signedBits(8));
 	END PROCESS;
 END vhdl;
