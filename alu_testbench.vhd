@@ -1,4 +1,6 @@
+LIBRARY ieee;
 USE work.const.ALL;
+USE ieee.std_logic_1164.ALL;
 
 ENTITY alu_testbench IS
 END alu_testbench;
@@ -6,37 +8,40 @@ END alu_testbench;
 ARCHITECTURE vhdl OF alu_testbench IS
   COMPONENT alu
     PORT (
-      a : IN INTEGER RANGE 0 TO m - 1;
-      b : IN INTEGER RANGE 0 TO m - 1;
+      a : IN std_logic_vector(n - 1 DOWNTO 0);
+      b : IN std_logic_vector(n - 1 DOWNTO 0);
       mode : IN INTEGER RANGE 0 TO 3;
-      result : OUT INTEGER RANGE 0 TO m - 1;
+      result : OUT std_logic_vector(n - 1 DOWNTO 0);
       carryBorrow : OUT BIT
     );
   END COMPONENT;
 
   FOR alu_0 : alu USE ENTITY work.alu;
 
-  SIGNAL a : INTEGER RANGE 0 TO m - 1;
-  SIGNAL b : INTEGER RANGE 0 TO m - 1;
+  SIGNAL a : std_logic_vector(n - 1 DOWNTO 0);
+  SIGNAL b : std_logic_vector(n - 1 DOWNTO 0);
   SIGNAL mode : INTEGER RANGE 0 TO 3;
-  SIGNAL result : INTEGER RANGE 0 TO m - 1;
+  SIGNAL result : std_logic_vector(n - 1 DOWNTO 0);
   SIGNAL carryBorrow : BIT;
 
 BEGIN
   alu_0 : alu PORT MAP(a => a, b => b, mode => mode, result => result, carryBorrow => carryBorrow);
   PROCESS
     TYPE pattern_type IS RECORD
-      a : INTEGER RANGE 0 TO m - 1;
-      b : INTEGER RANGE 0 TO m - 1;
+      a : std_logic_vector(n - 1 DOWNTO 0);
+      b : std_logic_vector(n - 1 DOWNTO 0);
       mode : INTEGER RANGE 0 TO 3;
-      result : INTEGER RANGE 0 TO m - 1;
+      result : std_logic_vector(n - 1 DOWNTO 0);
       carryBorrow : BIT;
     END RECORD;
     TYPE pattern_array IS ARRAY (NATURAL RANGE <>) OF pattern_type;
     CONSTANT patterns : pattern_array :=
-    ((3, 6, 0, 9, '0'),
-    (50, 100, 0, 150, '0'),
-    (100, 50, 1, 50, '0'));
+    (
+    ("00000000", "00000000", 0, "00000000", '0'),
+    ("00000000", "00000000", 1, "00000000", '0'),
+    ("00000000", "00000000", 2, "00000000", '0'),
+    ("00000000", "00000000", 3, "00000000", '0')
+    );
   BEGIN
     FOR i IN patterns'RANGE LOOP
       a <= patterns(i).a;
@@ -46,17 +51,17 @@ BEGIN
 
       ASSERT result = patterns(i).result AND carryBorrow = patterns(i).carryBorrow
       REPORT "Ocorreu um problema! Onde A = "
-        & INTEGER'image(a)
+        & to_hstring(a)
         & ", B = "
-        & INTEGER'image(b)
+        & to_hstring(b)
         & ", MODE = "
         & INTEGER'image(mode) SEVERITY error;
 
       ASSERT result = patterns(i).result
       REPORT "Resultado errado = "
-        & INTEGER'image(result)
+        & to_hstring(result)
         & ", resultado esperado = "
-        & INTEGER'image(patterns(i).result) SEVERITY error;
+        & to_hstring(patterns(i).result) SEVERITY error;
 
       ASSERT carryBorrow = patterns(i).carryBorrow
       REPORT "Carry/borrow errado = "

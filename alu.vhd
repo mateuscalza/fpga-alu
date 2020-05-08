@@ -8,6 +8,7 @@ END const;
 LIBRARY ieee;
 USE work.const.ALL;
 USE ieee.std_logic_1164.ALL;
+USE ieee.std_logic_unsigned.ALL;
 USE ieee.numeric_std.ALL;
 
 -- MODE:
@@ -18,23 +19,20 @@ USE ieee.numeric_std.ALL;
 
 ENTITY alu IS
 	PORT (
-		a : IN INTEGER RANGE 0 TO m - 1;
-		b : IN INTEGER RANGE 0 TO m - 1;
+		a : IN std_logic_vector(n - 1 DOWNTO 0);
+		b : IN std_logic_vector(n - 1 DOWNTO 0);
 
 		mode : IN INTEGER RANGE 0 TO 3;
 
-		result : OUT INTEGER RANGE 0 TO m - 1;
+		result : OUT std_logic_vector(n - 1 DOWNTO 0);
 		carryBorrow : OUT BIT
 	);
 END alu;
 
 ARCHITECTURE vhdl OF alu IS
-	SIGNAL vector_a : std_logic_vector(m - 1 DOWNTO 0);
-	SIGNAL vector_b : std_logic_vector(m - 1 DOWNTO 0);
-	SIGNAL vector_result : std_logic_vector(m - 1 DOWNTO 0);
 BEGIN
 	PROCESS (a, b, mode)
-		VARIABLE rr : INTEGER RANGE 0 TO q - 1;
+		VARIABLE rr : std_logic_vector(n - 1 DOWNTO 0);
 
 	BEGIN
 		IF mode = 0 THEN
@@ -58,15 +56,9 @@ BEGIN
 				carryBorrow <= '1';
 			END IF;
 		ELSIF mode = 2 THEN
-			vector_a <= std_logic_vector(to_unsigned(a, vector_a'length));
-			vector_b <= std_logic_vector(to_unsigned(a, vector_a'length));
-			vector_result <= vector_a AND vector_b;
-			result <= to_integer(signed(vector_result));
+			result <= a AND b;
 		ELSIF mode = 3 THEN
-			vector_a <= std_logic_vector(to_unsigned(a, vector_a'length));
-			vector_b <= std_logic_vector(to_unsigned(a, vector_a'length));
-			vector_result <= vector_a XOR vector_b;
-			result <= to_integer(signed(vector_result));
+			result <= a XOR b;
 		END IF;
 
 	END PROCESS;
